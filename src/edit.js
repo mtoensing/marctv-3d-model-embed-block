@@ -1,0 +1,333 @@
+import { __ } from '@wordpress/i18n';
+import {
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
+	useBlockProps,
+} from '@wordpress/block-editor';
+import {
+	BaseControl,
+	Button,
+	ColorPicker,
+	PanelBody,
+	Placeholder,
+	RangeControl,
+	TextControl,
+	ToggleControl,
+} from '@wordpress/components';
+import { dispatch } from '@wordpress/data';
+import { useEffect, useRef } from '@wordpress/element';
+import { syncModelViewerElement } from './model-viewer';
+import { attachModelViewerFeedback } from './viewer-feedback';
+
+const ALLOWED_MODEL_TYPES = [ 'model/gltf-binary', 'model/gltf+json' ];
+
+function getFileExtension( value ) {
+	if ( ! value ) {
+		return '';
+	}
+
+	const withoutQuery = String( value ).split( '?' )[ 0 ];
+	const parts = withoutQuery.split( '.' );
+
+	return parts.length > 1 ? parts.pop().toLowerCase() : '';
+}
+
+function isAllowedModelFile( media ) {
+	const extension = getFileExtension(
+		media?.filename || media?.url || media?.title?.rendered || media?.title
+	);
+
+	return extension === 'glb' || extension === 'gltf';
+}
+
+function showModelError() {
+	const message = __(
+		'Please select only files with the .glb or .gltf extension.',
+		'minimal-model-viewer-block'
+	);
+
+	dispatch( 'core/notices' ).createErrorNotice( message, {
+		type: 'snackbar',
+	} );
+}
+
+function renderButton( label, onClick, variant = 'primary' ) {
+	return (
+		<Button variant={ variant } onClick={ onClick }>
+			{ label }
+		</Button>
+	);
+}
+
+function EditorModelViewerPreview( { attributes } ) {
+	const modelViewerRef = useRef( null );
+
+	useEffect( () => {
+		return attachModelViewerFeedback( modelViewerRef.current );
+	}, [] );
+
+	useEffect( () => {
+		syncModelViewerElement( modelViewerRef.current, attributes );
+	}, [ attributes ] );
+
+	return (
+		<model-viewer
+			ref={ modelViewerRef }
+			data-editor-preview="true"
+			class="wp-block-minimal-model-viewer-block__viewer"
+		/>
+	);
+}
+
+export default function Edit( { attributes, clientId, setAttributes } ) {
+	const blockProps = useBlockProps();
+	const hasModel = !! attributes.modelUrl;
+	const hasCameraControls = attributes.cameraControls !== false;
+	const hasAutoRotate = attributes.autoRotate !== false;
+	const backgroundColorControlId = `minimal-model-viewer-background-color-${ clientId }`;
+
+	return (
+		<>
+			<InspectorControls>
+				<PanelBody
+					title={ __( '3D Model', 'minimal-model-viewer-block' ) }
+					initialOpen
+				>
+					<MediaUploadCheck>
+						<MediaUpload
+							allowedTypes={ ALLOWED_MODEL_TYPES }
+							value={ attributes.modelId }
+							onSelect={ ( media ) => {
+								if ( ! isAllowedModelFile( media ) ) {
+									showModelError();
+									return;
+								}
+
+								setAttributes( {
+									modelId: media.id,
+									modelUrl: media.url || '',
+								} );
+							} }
+							render={ ( { open } ) =>
+								renderButton(
+									hasModel
+										? __(
+												'Replace model (.glb/.gltf)',
+												'minimal-model-viewer-block'
+										  )
+										: __(
+												'Select model (.glb/.gltf)',
+												'minimal-model-viewer-block'
+										  ),
+									open
+								)
+							}
+						/>
+					</MediaUploadCheck>
+
+					<div className="minimal-model-viewer-block__spacer" />
+
+					<TextControl
+						label={ __( 'Alt text', 'minimal-model-viewer-block' ) }
+						value={ attributes.alt || '' }
+						onChange={ ( value ) =>
+							setAttributes( { alt: value } )
+						}
+						help={ __(
+							'Leave empty if the model is purely decorative.',
+							'minimal-model-viewer-block'
+						) }
+					/>
+
+					<MediaUploadCheck>
+						<MediaUpload
+							allowedTypes={ [ 'image' ] }
+							value={ attributes.posterId }
+							onSelect={ ( media ) =>
+								setAttributes( {
+									posterId: media.id,
+									posterUrl: media.url || '',
+								} )
+							}
+							render={ ( { open } ) =>
+								renderButton(
+									attributes.posterUrl
+										? __(
+												'Replace poster',
+												'minimal-model-viewer-block'
+										  )
+										: __(
+												'Select poster',
+												'minimal-model-viewer-block'
+										  ),
+									open,
+									'secondary'
+								)
+							}
+						/>
+					</MediaUploadCheck>
+
+					{ attributes.posterUrl && (
+						<Button
+							variant="tertiary"
+							onClick={ () =>
+								setAttributes( { posterId: 0, posterUrl: '' } )
+							}
+						>
+							{ __(
+								'Remove poster',
+								'minimal-model-viewer-block'
+							) }
+						</Button>
+					) }
+				</PanelBody>
+
+				<PanelBody
+					title={ __( 'Display', 'minimal-model-viewer-block' ) }
+					initialOpen
+				>
+					<RangeControl
+						label={ __(
+							'Height in pixels',
+							'minimal-model-viewer-block'
+						) }
+						value={ attributes.height ?? 520 }
+						min={ 260 }
+						max={ 1200 }
+						step={ 10 }
+						onChange={ ( value ) =>
+							setAttributes( { height: value || 520 } )
+						}
+					/>
+
+					<ToggleControl
+						label={ __(
+							'Interactive mode',
+							'minimal-model-viewer-block'
+						) }
+						checked={ hasCameraControls }
+						onChange={ ( value ) =>
+							setAttributes( { cameraControls: value } )
+						}
+						help={ __(
+							'Allows horizontal rotation with mouse or touch. Zoom, pan, and axis changes stay disabled.',
+							'minimal-model-viewer-block'
+						) }
+					/>
+
+					<ToggleControl
+						label={ __(
+							'Auto rotate',
+							'minimal-model-viewer-block'
+						) }
+						checked={ hasAutoRotate }
+						onChange={ ( value ) =>
+							setAttributes( { autoRotate: value } )
+						}
+						help={ __(
+							'Off = manual horizontal rotation only.',
+							'minimal-model-viewer-block'
+						) }
+					/>
+
+					<RangeControl
+						label={ __(
+							'Rotation speed',
+							'minimal-model-viewer-block'
+						) }
+						value={ attributes.rotationPerSecond ?? 30 }
+						min={ 1 }
+						max={ 120 }
+						step={ 1 }
+						onChange={ ( value ) =>
+							setAttributes( { rotationPerSecond: value || 30 } )
+						}
+						help={ __(
+							'Degrees per second for auto-rotation.',
+							'minimal-model-viewer-block'
+						) }
+						disabled={ ! hasAutoRotate }
+					/>
+
+					<RangeControl
+						label={ __(
+							'Start angle',
+							'minimal-model-viewer-block'
+						) }
+						value={ attributes.startAngle ?? 0 }
+						min={ -180 }
+						max={ 180 }
+						step={ 5 }
+						onChange={ ( value ) =>
+							setAttributes( { startAngle: value || 0 } )
+						}
+						help={ __(
+							'Rotates the model around the vertical axis on load.',
+							'minimal-model-viewer-block'
+						) }
+					/>
+
+					<ToggleControl
+						label={ __(
+							'Transparent background',
+							'minimal-model-viewer-block'
+						) }
+						checked={ attributes.transparentBackground !== false }
+						onChange={ ( value ) =>
+							setAttributes( { transparentBackground: value } )
+						}
+					/>
+
+					{ attributes.transparentBackground === false && (
+						<BaseControl
+							id={ backgroundColorControlId }
+							label={ __(
+								'Background color',
+								'minimal-model-viewer-block'
+							) }
+							help={ __(
+								'Used only when transparent background is disabled.',
+								'minimal-model-viewer-block'
+							) }
+						>
+							<ColorPicker
+								color={
+									attributes.backgroundColor || '#f3efe4'
+								}
+								enableAlpha={ false }
+								onChange={ ( value ) =>
+									setAttributes( {
+										backgroundColor: value || '#f3efe4',
+									} )
+								}
+							/>
+						</BaseControl>
+					) }
+				</PanelBody>
+			</InspectorControls>
+
+			{ hasModel ? (
+				<figure { ...blockProps }>
+					<EditorModelViewerPreview attributes={ attributes } />
+				</figure>
+			) : (
+				<div { ...blockProps }>
+					<Placeholder
+						label={ __(
+							'3D Model Viewer',
+							'minimal-model-viewer-block'
+						) }
+					>
+						<p>
+							{ __(
+								'Select a 3D model from the Media Library.',
+								'minimal-model-viewer-block'
+							) }
+						</p>
+					</Placeholder>
+				</div>
+			) }
+		</>
+	);
+}

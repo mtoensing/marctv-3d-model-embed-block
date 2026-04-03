@@ -1,0 +1,75 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "minimal-model-viewer/block",
+  "version": "0.3.5",
+  "title": "3D Model Viewer",
+  "category": "media",
+  "icon": "format-image",
+  "description": "Embeds a GLB or glTF model with interactive mouse and touch controls.",
+  "keywords": [
+    "3d",
+    "glb",
+    "gltf"
+  ],
+  "textdomain": "minimal-model-viewer-block",
+  "attributes": {
+    "modelUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "modelId": {
+      "type": "number"
+    },
+    "posterUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "posterId": {
+      "type": "number"
+    },
+    "alt": {
+      "type": "string",
+      "default": ""
+    },
+    "height": {
+      "type": "number",
+      "default": 520
+    },
+    "cameraControls": {
+      "type": "boolean",
+      "default": true
+    },
+    "autoRotate": {
+      "type": "boolean",
+      "default": true
+    },
+    "rotationPerSecond": {
+      "type": "number",
+      "default": 30
+    },
+    "startAngle": {
+      "type": "number",
+      "default": 0
+    },
+    "transparentBackground": {
+      "type": "boolean",
+      "default": true
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#f3efe4"
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "html": false
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "minimal-model-viewer-element"
+}

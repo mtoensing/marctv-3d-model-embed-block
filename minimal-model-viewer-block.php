@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Minimal Model Viewer Block
  * Description:       Embed GLB and glTF models in the block editor with a minimal, close-to-core Gutenberg block.
- * Version:           0.1.2
+ * Version:           0.3.6
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Marc Toensing
@@ -16,16 +16,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'MINIMAL_MODEL_VIEWER_BLOCK_VERSION', '0.1.2' );
+define( 'MINIMAL_MODEL_VIEWER_BLOCK_VERSION', '0.3.6' );
 define( 'MINIMAL_MODEL_VIEWER_ELEMENT_VERSION', '4.2.0' );
+define(
+	'MINIMAL_MODEL_VIEWER_ELEMENT_PATH',
+	'public/vendor/model-viewer/4.2.0/model-viewer-umd.min.js'
+);
 
 /**
  * Registers the web component and block metadata.
  */
 function minimal_model_viewer_block_init() {
+	// Bundled vendor asset:
+	// @google/model-viewer@4.2.0
+	// dist/model-viewer-umd.min.js
 	wp_register_script(
 		'minimal-model-viewer-element',
-		plugins_url( 'assets/model-viewer-umd.min.js', __FILE__ ),
+		plugins_url( MINIMAL_MODEL_VIEWER_ELEMENT_PATH, __FILE__ ),
 		array(),
 		MINIMAL_MODEL_VIEWER_ELEMENT_VERSION,
 		array(
@@ -34,7 +41,9 @@ function minimal_model_viewer_block_init() {
 		)
 	);
 
-	register_block_type( __DIR__ );
+	if ( file_exists( __DIR__ . '/build/block.json' ) ) {
+		register_block_type( __DIR__ . '/build' );
+	}
 }
 add_action( 'init', 'minimal_model_viewer_block_init' );
 

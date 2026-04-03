@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+	width="512"
+	height="512"
+	viewBox="0 0 512 512"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<rect width="512" height="512" rx="96" fill="#3858E9" />
+	<g
+		stroke="#FFFFFF"
+		stroke-width="28"
+		stroke-linecap="round"
+		stroke-linejoin="round"
+	>
+		<path d="M334 424C425 414 498 373 498 321C498 279 462 245 391 226" />
+		<path d="M111 235C65.6822 250.538 14 281.957 14 313.032C14 358.731 80.9915 397.118 169 409" />
+		<path d="M205 367L254 423L169 452Z" />
+		<path d="M256 52L386 127L256 202L126 127Z" />
+		<path d="M126 127V277L256 352L386 277V127" />
+		<path d="M256 202V352" />
+	</g>
+</svg>

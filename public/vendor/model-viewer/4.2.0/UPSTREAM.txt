@@ -1,0 +1,11 @@
+Bundled third-party asset for Minimal Model Viewer Block
+
+Package: @google/model-viewer
+Version: 4.2.0
+Project: https://modelviewer.dev/
+Source repository: https://github.com/google/model-viewer
+Original package file: dist/model-viewer-umd.min.js
+Local bundled file: public/vendor/model-viewer/4.2.0/model-viewer-umd.min.js
+SHA-256: 777eef0e3f21f9a8137ee4a3cb4346f3acf0e4dea8dcc3bc84dfeade8b8bc1ad
+
+This file is bundled unchanged from the upstream package distribution.
