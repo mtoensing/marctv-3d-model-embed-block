@@ -1,0 +1,15 @@
+.minimal-model-viewer-block__preview {
+	margin: 0;
+}
+
+.minimal-model-viewer-block__spacer {
+	height: 0.75rem;
+}
+
+.editor-styles-wrapper .minimal-model-viewer-block__empty {
+	margin: 0;
+}
+
+.editor-styles-wrapper .wp-block-minimal-model-viewer-block model-viewer {
+	min-height: 320px;
+}
