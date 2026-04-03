@@ -1,18 +1,18 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "minimal-model-viewer/block",
-  "version": "0.3.5",
-  "title": "3D Model Viewer",
+  "name": "minimal-3d-model-viewer/block",
+  "version": "0.4.0",
+  "title": "Minimal 3D Model Viewer",
   "category": "media",
   "icon": "format-image",
-  "description": "Embeds a GLB or glTF model with interactive mouse and touch controls.",
+  "description": "Embeds a GLB or glTF 3D model with interactive mouse and touch controls.",
   "keywords": [
     "3d",
     "glb",
     "gltf"
   ],
-  "textdomain": "minimal-model-viewer-block",
+  "textdomain": "minimal-3d-model-viewer-block",
   "attributes": {
     "modelUrl": {
       "type": "string",
@@ -71,5 +71,5 @@
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
-  "viewScript": "minimal-model-viewer-element"
+  "viewScript": "minimal-3d-model-viewer-element"
 }

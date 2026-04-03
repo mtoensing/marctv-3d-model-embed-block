@@ -1,4 +1,4 @@
-Bundled third-party asset for Minimal Model Viewer Block
+Bundled third-party asset for Minimal 3D Model Viewer Block
 
 Package: @google/model-viewer
 Version: 4.2.0

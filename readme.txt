@@ -1,10 +1,10 @@
-=== Minimal Model Viewer Block ===
+=== Minimal 3D Model Viewer Block ===
 Contributors: mtoensing
 Tags: 3d, glb, gltf, model-viewer, gutenberg
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.3.6
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -29,7 +29,7 @@ The bundled file is kept versioned in the plugin and documented alongside the as
 
 1. Install and activate the plugin.
 2. Upload a `.glb` or `.gltf` file to the media library.
-3. Insert the `3D Model Viewer` block and select the file.
+3. Insert the `Minimal 3D Model Viewer` block and select the file.
 
 == Frequently Asked Questions ==
 
@@ -42,6 +42,10 @@ The block supports 3D models in `.glb` and `.gltf`.
 No. Models are selected from the WordPress media library.
 
 == Changelog ==
+
+= 0.4.0 =
+* Rename the plugin, block, package, and local directory to `Minimal 3D Model Viewer Block`.
+* Keep the bundled `model-viewer` runtime on a versioned vendor path with documented provenance.
 
 = 0.3.6 =
 * Move the bundled `model-viewer` runtime to a versioned vendor path and document its provenance more clearly.

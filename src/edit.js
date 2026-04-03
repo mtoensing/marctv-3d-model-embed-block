@@ -44,7 +44,7 @@ function isAllowedModelFile( media ) {
 function showModelError() {
 	const message = __(
 		'Please select only files with the .glb or .gltf extension.',
-		'minimal-model-viewer-block'
+		'minimal-3d-model-viewer-block'
 	);
 
 	dispatch( 'core/notices' ).createErrorNotice( message, {
@@ -75,7 +75,7 @@ function EditorModelViewerPreview( { attributes } ) {
 		<model-viewer
 			ref={ modelViewerRef }
 			data-editor-preview="true"
-			class="wp-block-minimal-model-viewer-block__viewer"
+			class="wp-block-minimal-3d-model-viewer-block__viewer"
 		/>
 	);
 }
@@ -85,13 +85,13 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const hasModel = !! attributes.modelUrl;
 	const hasCameraControls = attributes.cameraControls !== false;
 	const hasAutoRotate = attributes.autoRotate !== false;
-	const backgroundColorControlId = `minimal-model-viewer-background-color-${ clientId }`;
+	const backgroundColorControlId = `minimal-3d-model-viewer-background-color-${ clientId }`;
 
 	return (
 		<>
 			<InspectorControls>
 				<PanelBody
-					title={ __( '3D Model', 'minimal-model-viewer-block' ) }
+					title={ __( '3D Model', 'minimal-3d-model-viewer-block' ) }
 					initialOpen
 				>
 					<MediaUploadCheck>
@@ -114,11 +114,11 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 									hasModel
 										? __(
 												'Replace model (.glb/.gltf)',
-												'minimal-model-viewer-block'
+												'minimal-3d-model-viewer-block'
 										  )
 										: __(
 												'Select model (.glb/.gltf)',
-												'minimal-model-viewer-block'
+												'minimal-3d-model-viewer-block'
 										  ),
 									open
 								)
@@ -126,17 +126,17 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						/>
 					</MediaUploadCheck>
 
-					<div className="minimal-model-viewer-block__spacer" />
+					<div className="minimal-3d-model-viewer-block__spacer" />
 
 					<TextControl
-						label={ __( 'Alt text', 'minimal-model-viewer-block' ) }
+						label={ __( 'Alt text', 'minimal-3d-model-viewer-block' ) }
 						value={ attributes.alt || '' }
 						onChange={ ( value ) =>
 							setAttributes( { alt: value } )
 						}
 						help={ __(
 							'Leave empty if the model is purely decorative.',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 					/>
 
@@ -155,11 +155,11 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 									attributes.posterUrl
 										? __(
 												'Replace poster',
-												'minimal-model-viewer-block'
+												'minimal-3d-model-viewer-block'
 										  )
 										: __(
 												'Select poster',
-												'minimal-model-viewer-block'
+												'minimal-3d-model-viewer-block'
 										  ),
 									open,
 									'secondary'
@@ -177,20 +177,20 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						>
 							{ __(
 								'Remove poster',
-								'minimal-model-viewer-block'
+								'minimal-3d-model-viewer-block'
 							) }
 						</Button>
 					) }
 				</PanelBody>
 
 				<PanelBody
-					title={ __( 'Display', 'minimal-model-viewer-block' ) }
+					title={ __( 'Display', 'minimal-3d-model-viewer-block' ) }
 					initialOpen
 				>
 					<RangeControl
 						label={ __(
 							'Height in pixels',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 						value={ attributes.height ?? 520 }
 						min={ 260 }
@@ -204,7 +204,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					<ToggleControl
 						label={ __(
 							'Interactive mode',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 						checked={ hasCameraControls }
 						onChange={ ( value ) =>
@@ -212,14 +212,14 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						}
 						help={ __(
 							'Allows horizontal rotation with mouse or touch. Zoom, pan, and axis changes stay disabled.',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 					/>
 
 					<ToggleControl
 						label={ __(
 							'Auto rotate',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 						checked={ hasAutoRotate }
 						onChange={ ( value ) =>
@@ -227,14 +227,14 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						}
 						help={ __(
 							'Off = manual horizontal rotation only.',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 					/>
 
 					<RangeControl
 						label={ __(
 							'Rotation speed',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 						value={ attributes.rotationPerSecond ?? 30 }
 						min={ 1 }
@@ -245,7 +245,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						}
 						help={ __(
 							'Degrees per second for auto-rotation.',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 						disabled={ ! hasAutoRotate }
 					/>
@@ -253,7 +253,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					<RangeControl
 						label={ __(
 							'Start angle',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 						value={ attributes.startAngle ?? 0 }
 						min={ -180 }
@@ -264,14 +264,14 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						}
 						help={ __(
 							'Rotates the model around the vertical axis on load.',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 					/>
 
 					<ToggleControl
 						label={ __(
 							'Transparent background',
-							'minimal-model-viewer-block'
+							'minimal-3d-model-viewer-block'
 						) }
 						checked={ attributes.transparentBackground !== false }
 						onChange={ ( value ) =>
@@ -284,11 +284,11 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							id={ backgroundColorControlId }
 							label={ __(
 								'Background color',
-								'minimal-model-viewer-block'
+								'minimal-3d-model-viewer-block'
 							) }
 							help={ __(
 								'Used only when transparent background is disabled.',
-								'minimal-model-viewer-block'
+								'minimal-3d-model-viewer-block'
 							) }
 						>
 							<ColorPicker
@@ -315,14 +315,14 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 				<div { ...blockProps }>
 					<Placeholder
 						label={ __(
-							'3D Model Viewer',
-							'minimal-model-viewer-block'
+							'Minimal 3D Model Viewer',
+							'minimal-3d-model-viewer-block'
 						) }
 					>
 						<p>
 							{ __(
 								'Select a 3D model from the Media Library.',
-								'minimal-model-viewer-block'
+								'minimal-3d-model-viewer-block'
 							) }
 						</p>
 					</Placeholder>
