@@ -44,6 +44,12 @@
 	user-select: none;
 }
 
+@media (max-width: 600px) {
+	.editor-styles-wrapper .wp-block-minimal-3d-model-viewer-block model-viewer {
+		min-height: max(200px, 56vw);
+	}
+}
+
 .editor-styles-wrapper .wp-block-minimal-3d-model-viewer-block__status {
 	position: absolute;
 	inset: 0;
