@@ -4,7 +4,7 @@ Tags: 3d, glb, gltf, model-viewer, gutenberg
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.4.0
+Stable tag: 0.4.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -42,6 +42,9 @@ The block supports 3D models in `.glb` and `.gltf`.
 No. Models are selected from the WordPress media library.
 
 == Changelog ==
+
+= 0.4.1 =
+* Hide the default `model-viewer` progress bar via its official `progress-bar` slot instead of styling around it.
 
 = 0.4.0 =
 * Rename the plugin, block, package, and local directory to `Minimal 3D Model Viewer Block`.

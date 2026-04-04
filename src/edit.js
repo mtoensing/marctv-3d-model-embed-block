@@ -76,7 +76,9 @@ function EditorModelViewerPreview( { attributes } ) {
 			ref={ modelViewerRef }
 			data-editor-preview="true"
 			class="wp-block-minimal-3d-model-viewer-block__viewer"
-		/>
+		>
+			<div slot="progress-bar" aria-hidden="true" />
+		</model-viewer>
 	);
 }
 

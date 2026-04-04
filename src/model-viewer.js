@@ -10,6 +10,8 @@ const DEFAULT_BACKGROUND = '#f3efe4';
 const DEFAULT_CAMERA_CONTROLS = true;
 const DEFAULT_AUTO_ROTATE = true;
 const FIXED_POLAR_ANGLE = '75deg';
+const HIDDEN_PROGRESS_BAR_SLOT =
+	'<div slot="progress-bar" aria-hidden="true"></div>';
 
 function clamp( value, min, max ) {
 	return Math.min( max, Math.max( min, value ) );
@@ -134,5 +136,7 @@ export function getModelViewerHtml( attributes ) {
 		parts.push( `${ key }="${ escapeAttribute( value ) }"` );
 	} );
 
-	return `<model-viewer ${ parts.join( ' ' ) }></model-viewer>`;
+	return `<model-viewer ${ parts.join(
+		' '
+	) }>${ HIDDEN_PROGRESS_BAR_SLOT }</model-viewer>`;
 }
