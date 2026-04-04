@@ -1,6 +1,9 @@
 const MIN_HEIGHT = 260;
 const MAX_HEIGHT = 1200;
 const DEFAULT_HEIGHT = 520;
+const MIN_CAMERA_DISTANCE = 60;
+const MAX_CAMERA_DISTANCE = 140;
+const DEFAULT_CAMERA_DISTANCE = 105;
 const MIN_ROTATION = 1;
 const MAX_ROTATION = 120;
 const DEFAULT_ROTATION = 30;
@@ -31,6 +34,11 @@ export function getModelViewerAttributes( attributes ) {
 		MIN_HEIGHT,
 		MAX_HEIGHT
 	);
+	const cameraDistance = clamp(
+		attributes.cameraDistance ?? DEFAULT_CAMERA_DISTANCE,
+		MIN_CAMERA_DISTANCE,
+		MAX_CAMERA_DISTANCE
+	);
 	const rotationPerSecond = clamp(
 		attributes.rotationPerSecond ?? DEFAULT_ROTATION,
 		MIN_ROTATION,
@@ -56,6 +64,7 @@ export function getModelViewerAttributes( attributes ) {
 		style: `--minimal-3d-model-viewer-height:${ height }px;--minimal-3d-model-viewer-background:${
 			transparentBackground ? 'transparent' : backgroundColor
 		};`,
+		'camera-orbit': `0deg ${ FIXED_POLAR_ANGLE } ${ cameraDistance }%`,
 		'shadow-intensity': '1',
 		'shadow-softness': '0.8',
 		'interaction-prompt': 'auto',

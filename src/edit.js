@@ -249,6 +249,26 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						}
 					/>
 
+					<RangeControl
+						label={ __(
+							'Framing',
+							'minimal-3d-model-viewer-block'
+						) }
+						value={ attributes.cameraDistance ?? 105 }
+						min={ 60 }
+						max={ 140 }
+						step={ 1 }
+						onChange={ ( value ) =>
+							setAttributes( {
+								cameraDistance: value ?? 105,
+							} )
+						}
+						help={ __(
+							'Lower values bring the camera closer. Uses model-viewer camera-orbit radius.',
+							'minimal-3d-model-viewer-block'
+						) }
+					/>
+
 					<ToggleControl
 						label={ __(
 							'Interactive mode',
