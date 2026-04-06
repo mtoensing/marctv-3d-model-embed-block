@@ -4,15 +4,16 @@ Tags: 3d, glb, gltf, model-viewer, gutenberg
 Requires at least: 6.5
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.4.3
+Stable tag: 0.4.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Show interactive 3D models in WordPress with a simple block for GLB and glTF files.
+Show interactive 3D models in WordPress with a simple block for GLB and glTF files, including optional zoom controls.
 
 == Description ==
 
 Adds a block for interactive 3D models in `.glb` and `.gltf` format from the media library.
+You can keep interaction limited to horizontal rotation or enable zoom explicitly when needed.
 
 Includes the `model-viewer` runtime locally:
 
@@ -39,9 +40,17 @@ The block supports 3D models in `.glb` and `.gltf`.
 
 = Can I enter an external model URL? =
 
-No. Models are selected from the WordPress media library.
+Yes. Use the block's URL input to insert a `.glb` or `.gltf` file directly.
+
+= Can I enable zoom? =
+
+Yes. Turn on `Zoom interaction` in the block sidebar to enable pinch zoom on touch devices and mouse-wheel zoom on desktop.
 
 == Changelog ==
+
+= 0.4.4 =
+* Add a `Zoom interaction` toggle to enable zoom when needed while keeping the previous default interaction unchanged.
+* Document optional zoom controls and direct URL insertion in the readme.
 
 = 0.4.3 =
 * Add a `Framing` control that adjusts `model-viewer` camera distance via the official `camera-orbit` attribute.
