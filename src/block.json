@@ -40,6 +40,10 @@
 			"type": "boolean",
 			"default": true
 		},
+		"zoomEnabled": {
+			"type": "boolean",
+			"default": false
+		},
 		"autoRotate": {
 			"type": "boolean",
 			"default": true

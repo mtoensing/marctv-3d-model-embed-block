@@ -53,6 +53,7 @@ export function getModelViewerAttributes( attributes ) {
 	const backgroundColor = attributes.backgroundColor || DEFAULT_BACKGROUND;
 	const cameraControls =
 		attributes.cameraControls !== false && DEFAULT_CAMERA_CONTROLS;
+	const zoomEnabled = attributes.zoomEnabled === true;
 	const autoRotate = attributes.autoRotate !== false && DEFAULT_AUTO_ROTATE;
 
 	const props = {
@@ -73,11 +74,14 @@ export function getModelViewerAttributes( attributes ) {
 	if ( cameraControls ) {
 		props[ 'camera-controls' ] = 'camera-controls';
 		props[ 'touch-action' ] = 'pan-y';
-		props[ 'disable-zoom' ] = 'disable-zoom';
 		props[ 'disable-pan' ] = 'disable-pan';
 		props[ 'disable-tap' ] = 'disable-tap';
 		props[ 'min-camera-orbit' ] = `auto ${ FIXED_POLAR_ANGLE } auto`;
 		props[ 'max-camera-orbit' ] = `auto ${ FIXED_POLAR_ANGLE } auto`;
+
+		if ( ! zoomEnabled ) {
+			props[ 'disable-zoom' ] = 'disable-zoom';
+		}
 	}
 
 	if ( autoRotate ) {

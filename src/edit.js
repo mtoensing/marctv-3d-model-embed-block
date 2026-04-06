@@ -124,6 +124,7 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 	const blockProps = useBlockProps();
 	const hasModel = !! attributes.modelUrl;
 	const hasCameraControls = attributes.cameraControls !== false;
+	const hasZoomEnabled = attributes.zoomEnabled === true;
 	const hasAutoRotate = attributes.autoRotate !== false;
 	const backgroundColorControlId = `minimal-3d-model-viewer-background-color-${ clientId }`;
 	const onSelectModel = ( media ) => {
@@ -177,7 +178,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					initialOpen
 				>
 					<TextControl
-						label={ __( 'Alt text', 'minimal-3d-model-viewer-block' ) }
+						label={ __(
+							'Alt text',
+							'minimal-3d-model-viewer-block'
+						) }
 						value={ attributes.alt || '' }
 						onChange={ ( value ) =>
 							setAttributes( { alt: value } )
@@ -279,9 +283,25 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 							setAttributes( { cameraControls: value } )
 						}
 						help={ __(
-							'Allows horizontal rotation with mouse or touch. Zoom, pan, and axis changes stay disabled.',
+							'Allows horizontal rotation with mouse or touch. Zoom can be enabled separately below; pan and axis changes stay disabled.',
 							'minimal-3d-model-viewer-block'
 						) }
+					/>
+
+					<ToggleControl
+						label={ __(
+							'Zoom interaction',
+							'minimal-3d-model-viewer-block'
+						) }
+						checked={ hasZoomEnabled }
+						onChange={ ( value ) =>
+							setAttributes( { zoomEnabled: value } )
+						}
+						help={ __(
+							'Enables pinch zoom on touch devices and mouse-wheel zoom on desktop. model-viewer exposes both together.',
+							'minimal-3d-model-viewer-block'
+						) }
+						disabled={ ! hasCameraControls }
 					/>
 
 					<ToggleControl
