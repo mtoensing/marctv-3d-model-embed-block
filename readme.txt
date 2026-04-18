@@ -1,5 +1,5 @@
 === 3D Model Embed Block ===
-Contributors: mtoensing
+Contributors: MarcDK
 Tags: 3d, glb, gltf, model-viewer, gutenberg
 Requires at least: 6.5
 Tested up to: 6.9
