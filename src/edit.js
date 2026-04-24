@@ -161,7 +161,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						mediaURL={ attributes.modelUrl }
 						allowedTypes={ ALLOWED_MODEL_TYPES }
 						accept={ ALLOWED_MODEL_FILE_INPUT }
-						name={ __( 'Replace model', 'marctv-3d-model-embed-block' ) }
+						name={ __(
+							'Replace model',
+							'marctv-3d-model-embed-block'
+						) }
 						onSelect={ onSelectModel }
 						onSelectURL={ onSelectModelURL }
 						onReset={ onResetModel }
@@ -175,7 +178,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					initialOpen
 				>
 					<TextControl
-						label={ __( 'Alt text', 'marctv-3d-model-embed-block' ) }
+						label={ __(
+							'Alt text',
+							'marctv-3d-model-embed-block'
+						) }
 						value={ attributes.alt || '' }
 						onChange={ ( value ) =>
 							setAttributes( { alt: value } )
@@ -221,7 +227,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 								setAttributes( { posterId: 0, posterUrl: '' } )
 							}
 						>
-							{ __( 'Remove poster', 'marctv-3d-model-embed-block' ) }
+							{ __(
+								'Remove poster',
+								'marctv-3d-model-embed-block'
+							) }
 						</Button>
 					) }
 				</PanelBody>
@@ -293,7 +302,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					/>
 
 					<ToggleControl
-						label={ __( 'Auto rotate', 'marctv-3d-model-embed-block' ) }
+						label={ __(
+							'Auto rotate',
+							'marctv-3d-model-embed-block'
+						) }
 						checked={ hasAutoRotate }
 						onChange={ ( value ) =>
 							setAttributes( { autoRotate: value } )
@@ -305,7 +317,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					/>
 
 					<RangeControl
-						label={ __( 'Rotation speed', 'marctv-3d-model-embed-block' ) }
+						label={ __(
+							'Rotation speed',
+							'marctv-3d-model-embed-block'
+						) }
 						value={ attributes.rotationPerSecond ?? 30 }
 						min={ 1 }
 						max={ 120 }
@@ -321,7 +336,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 					/>
 
 					<RangeControl
-						label={ __( 'Start angle', 'marctv-3d-model-embed-block' ) }
+						label={ __(
+							'Start angle',
+							'marctv-3d-model-embed-block'
+						) }
 						value={ attributes.startAngle ?? 0 }
 						min={ -180 }
 						max={ 180 }
@@ -385,7 +403,10 @@ export default function Edit( { attributes, clientId, setAttributes } ) {
 						allowedTypes={ ALLOWED_MODEL_TYPES }
 						disableMediaButtons={ false }
 						labels={ {
-							title: __( '3D model', 'marctv-3d-model-embed-block' ),
+							title: __(
+								'3D model',
+								'marctv-3d-model-embed-block'
+							),
 							instructions: __(
 								'Upload a .glb or .gltf file, choose one from the Media Library, or insert one from a URL.',
 								'marctv-3d-model-embed-block'
