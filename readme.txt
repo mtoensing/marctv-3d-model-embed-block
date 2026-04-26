@@ -15,6 +15,8 @@ Show interactive 3D models in WordPress with a simple block for GLB and glTF fil
 Adds a block for interactive 3D models in `.glb` and `.gltf` format from the media library.
 You can keep interaction limited to horizontal rotation or enable zoom explicitly when needed.
 
+This plugin is being developed on GitHub https://github.com/mtoensing/marctv-3d-model-embed-block
+
 Includes the `model-viewer` runtime locally:
 
 * Project: https://modelviewer.dev/
