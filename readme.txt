@@ -60,6 +60,7 @@ Yes. Turn on `Zoom interaction` in the block sidebar to enable pinch zoom on tou
 == Changelog ==
 = 1.0.1 =
 * Prepared release for WordPress 7.0 compatibility.
+* Remove the unwanted black focus outline after pointer interaction on the frontend.
 
 
 = 1.0.0 =

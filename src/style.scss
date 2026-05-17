@@ -18,6 +18,12 @@
 	background: var(--marctv-3d-model-embed-block-background, transparent);
 	border-radius: 18px;
 	overflow: hidden;
+	outline: none;
+}
+
+.wp-block-marctv-3d-model-embed-block-block__viewer:focus-visible {
+	outline: 2px solid var(--wp--preset--color--contrast, #1b1f23);
+	outline-offset: 3px;
 }
 
 @media (max-width: 600px) {
