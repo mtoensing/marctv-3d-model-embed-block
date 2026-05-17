@@ -4,7 +4,7 @@ Tags: 3d, glb, gltf, model-viewer, gutenberg
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -58,6 +58,9 @@ Yes. Use the block's URL input to insert a `.glb` or `.gltf` file directly.
 Yes. Turn on `Zoom interaction` in the block sidebar to enable pinch zoom on touch devices and mouse-wheel zoom on desktop.
 
 == Changelog ==
+= 1.0.1 =
+* Prepared release for WordPress 7.0 compatibility.
+
 
 = 1.0.0 =
 * Add polished WordPress.org icon and banner assets for the public plugin launch.
